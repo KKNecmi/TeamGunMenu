@@ -2,6 +2,8 @@ using System;
 using System.Linq;
 using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
+using CounterStrikeSharp.API.Modules.Memory;
+using CounterStrikeSharp.API.Modules.Memory.DynamicFunctions;
 using CounterStrikeSharp.API.Modules.Utils;
 using CS2MenuManager.API.Menu;
 
@@ -45,6 +47,12 @@ public static class WeaponSelectMenu
                 // Give new weapon
                 teammate.GiveNamedItem(weapon);
                 teammate.PrintToChat($"You got {weapon}" + (hsOnly ? " (HS only!)" : ""));
+
+                // Track HS-only state
+                if (hsOnly)
+                    TeamGunPlugin.HsOnlyPlayers[teammate.SteamID] = true;
+                else
+                    TeamGunPlugin.HsOnlyPlayers.Remove(teammate.SteamID);
             }
             player.PrintToChat($"You got {weapon}" + (hsOnly ? " (HS only!)" : ""));
         }
