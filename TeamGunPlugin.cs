@@ -1,3 +1,4 @@
+using CounterStrikeSharp.API;
 using CounterStrikeSharp.API.Core;
 using CounterStrikeSharp.API.Core.Attributes;
 using Microsoft.Extensions.Logging;
@@ -22,15 +23,6 @@ public class TeamGunPlugin : BasePlugin
         AddCommand(
             "tg",
             "Opens team selection menu",
-            (player, _) =>
-            {
-                TeamSelectMenu.Show(player, this);
-            }
-        );
-
-        AddCommand(
-            "based",
-            "Shortcut for team selection",
             (player, _) =>
             {
                 TeamSelectMenu.Show(player, this);

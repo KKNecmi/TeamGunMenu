@@ -10,16 +10,15 @@ TeamGun lets players pick a team, choose a weapon, and fight in color-coded grou
 ---
 
 ## ✅ Features
-- Menu-based team selection (`!tg`, `!based`)
+- Menu-based team selection (`!tg`)
 - Weapon selection menu: Deagle / USP-S (with optional headshot-only variants)
 - Automatically divides team into red & blue squads
 - Applies color glow to players
-- Disables friendly fire automatically
 
 ---
 
 ## 📥 Installation
-> Requires [CounterStrikeSharp](https://github.com/roflmuffin/CounterStrikeSharp) and [CS2MenuManager](https://github.com/Team-CSS/CS2MenuManager)
+> Requires [CounterStrikeSharp](https://github.com/roflmuffin/CounterStrikeSharp) and [CS2MenuManager](https://github.com/schwarper/CS2MenuManager)
 
 1. Download or clone this repository:
     ```
@@ -33,8 +32,6 @@ TeamGun lets players pick a team, choose a weapon, and fight in color-coded grou
     csgo/addons/counterstrikesharp/plugins/
     ```
 
-4. (Optional) Install [CS2MenuManager](https://github.com/Team-CSS/CS2MenuManager) if not already present.
-
 ---
 
 ## 💬 Commands
@@ -47,11 +44,4 @@ TeamGun lets players pick a team, choose a weapon, and fight in color-coded grou
 
 ## 📸 Preview
 
-<p align="left"> <img src="https://github.com/KKNecmi/TeamGunMenu/blob/main/images/demo.png" alt="TeamGun Screenshot" width="300"/> </p>
-
----
-
-## 📄 License
-
-This plugin is released under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html)
-
+<p align="left"> <img src="https://github.com/KKNecmi/TeamGunMenu/blob/main/images/screenshot.png" alt="TeamGun Screenshot" width="300"/> </p>
