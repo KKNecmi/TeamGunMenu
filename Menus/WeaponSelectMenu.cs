@@ -15,17 +15,8 @@ public static class WeaponSelectMenu
     {
         var menu = new CenterHtmlMenu("Choose Your Weapon", plugin);
 
-        void GiveGun(string weapon, bool hsOnly, CsTeam selectedTeam)
+        void GiveGun(string weapon, bool hsOnly, CsTeam selectedTeam, bool noscopeOnly = false)
         {
-            // Remove existing weapons
-            foreach (var weap in player.PlayerPawn.Value.WeaponServices!.MyWeapons)
-            {
-                var entity = weap.Value;
-                if (entity != null && entity.IsValid)
-                    entity.Remove();
-            }
-
-            // Give new weapon
             foreach (
                 var teammate in Utilities
                     .GetPlayers()
@@ -36,7 +27,6 @@ public static class WeaponSelectMenu
                 if (pawn == null)
                     continue;
 
-                // Remove all weapons
                 foreach (var weap in pawn.WeaponServices!.MyWeapons)
                 {
                     var entity = weap.Value;
@@ -44,23 +34,38 @@ public static class WeaponSelectMenu
                         entity.Remove();
                 }
 
-                // Give new weapon
                 teammate.GiveNamedItem(weapon);
-                teammate.PrintToChat($"You got {weapon}" + (hsOnly ? " (HS only!)" : ""));
+                teammate.PrintToChat(
+                    $"You got {weapon}"
+                        + (hsOnly ? " (HS only!)" : "")
+                        + (noscopeOnly ? " (NoScope!)" : "")
+                );
 
-                // Track HS-only state
+                // Set flags
                 if (hsOnly)
                     TeamGunPlugin.HsOnlyPlayers[teammate.SteamID] = true;
                 else
                     TeamGunPlugin.HsOnlyPlayers.Remove(teammate.SteamID);
+
+                if (noscopeOnly)
+                    TeamGunPlugin.NoScopeOnlyPlayers[teammate.SteamID] = true;
+                else
+                    TeamGunPlugin.NoScopeOnlyPlayers.Remove(teammate.SteamID);
             }
-            player.PrintToChat($"You got {weapon}" + (hsOnly ? " (HS only!)" : ""));
         }
 
         menu.AddItem("Deagle", (p, o) => GiveGun("weapon_deagle", false, selectedTeam));
         menu.AddItem("Deagle-HS", (p, o) => GiveGun("weapon_deagle", true, selectedTeam));
         menu.AddItem("USP-S", (p, o) => GiveGun("weapon_usp_silencer", false, selectedTeam));
         menu.AddItem("USP-S-HS", (p, o) => GiveGun("weapon_usp_silencer", true, selectedTeam));
+        menu.AddItem(
+            "SSG08 (NoScope)",
+            (p, o) => GiveGun("weapon_ssg08", false, selectedTeam, noscopeOnly: true)
+        );
+        menu.AddItem(
+            "AWP (NoScope)",
+            (p, o) => GiveGun("weapon_awp", false, selectedTeam, noscopeOnly: true)
+        );
 
         menu.Display(player, 0);
 
