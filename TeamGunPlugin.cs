@@ -15,7 +15,7 @@ namespace TeamGun;
 [MinimumApiVersion(80)]
 public class TeamGunPlugin : BasePlugin
 {
-    public override string ModuleName => "TeamGun";
+    public override string ModuleName => "TeamGunMenu";
     public override string ModuleVersion => "1.0.0";
     public override string ModuleAuthor => "Necmi";
     public override string ModuleDescription => "Pick a team and weapon, fight with colored teams";
@@ -25,7 +25,7 @@ public class TeamGunPlugin : BasePlugin
 
     public override void Load(bool hotReload)
     {
-        Logger.LogInformation("[TeamGun] Plugin loaded!");
+        Logger.LogInformation("[TeamGunMenu] Plugin loaded!");
         VirtualFunctions.CBaseEntity_TakeDamageOldFunc.Hook(OnTakeDamage, HookMode.Pre);
         Server.ExecuteCommand("mp_friendlyfire 1");
 
